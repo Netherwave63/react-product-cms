@@ -39,4 +39,18 @@ const errorProducts = (error) => ({
   }
 })
 
-export { getProducts, receiveProducts, addProduct, deleteProduct, updateProduct, errorProducts }
+const searchProducts = (searchKey) => ({
+  type: ACTIONS.SEARCH_PRODUCTS,
+  payload: {
+    searchKey
+  }
+})
+
+const sortProducts = (sortKey) => ({
+  type: ACTIONS.SORT_PRODUCTS,
+  payload: {
+    sortKey
+  }
+})
+
+export { getProducts, receiveProducts, addProduct, deleteProduct, updateProduct, errorProducts, searchProducts, sortProducts }

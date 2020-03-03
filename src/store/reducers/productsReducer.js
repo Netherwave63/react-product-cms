@@ -3,7 +3,9 @@ import ACTIONS from '../actionTypes/products'
 const initialState = {
   loading: false,
   products: [],
-  error: null
+  error: null,
+  searchKey: '',
+  sortKey: ''
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -26,8 +28,24 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         error: action.payload.error
       }
+    case ACTIONS.SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchKey: action.payload.searchKey
+      }
+    case ACTIONS.SORT_PRODUCTS:
+      return applySortProducts(state, action)
     default:
       return state
+  }
+}
+
+function applySortProducts(state, action) {
+  const f = (a, b) => { return a.name < b.name ? 1 : -1 }
+  console.log(state.products.sort(f))
+  return {
+    ...state,
+    products: state.products.sort(f)
   }
 }
 
