@@ -19,23 +19,13 @@ const Navbar = () => {
           </a>
         </div>
 
-        <div id='navbarBasicExample' class={active ? 'navbar-menu is-active' : 'navbar-menu'}>
-          <div class='navbar-start'>
-            <a class='navbar-item'>
-              <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
-            </a>
-            <a class='navbar-item'>
-              <Link to={ROUTES.PRODUCTS}>Products</Link>
-            </a>
-            <a class='navbar-item'>
-              <Link to={ROUTES.CUSTOMERS}>Customers</Link>
-            </a>
-            <a class='navbar-item'>
-              <Link to={ROUTES.ARCHIEVES}>Archieves</Link>
-            </a>
-            <a class='navbar-item'>
-              <Link to={ROUTES.NOTES}>Notes</Link>
-            </a>
+        <div id='navbarBasicExample' className={active ? 'navbar-menu is-active' : 'navbar-menu'}>
+          <div className='navbar-start'>
+            <Link className='navbar-item' to={ROUTES.DASHBOARD}>Dashboard</Link>
+            <Link className='navbar-item' to={ROUTES.PRODUCTS}>Products</Link>
+            <Link className='navbar-item' to={ROUTES.CUSTOMERS}>Customers</Link>
+            <Link className='navbar-item' to={ROUTES.ARCHIEVES}>Archieves</Link>
+            <Link className='navbar-item' to={ROUTES.NOTES}>Notes</Link>
           </div>
         </div>
       </div>
