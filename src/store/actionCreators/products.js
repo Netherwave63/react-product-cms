@@ -18,4 +18,25 @@ const addProduct = (product) => ({
   }
 })
 
-export { getProducts, receiveProducts, addProduct }
+const deleteProduct = (id) => ({
+  type: ACTIONS.DELETE_PRODUCT,
+  payload: {
+    id
+  }
+})
+
+const updateProduct = (product) => ({
+  type: ACTIONS.UPDATE_PRODUCT,
+  payload: {
+    product
+  }
+})
+
+const errorProducts = (error) => ({
+  type: ACTIONS.ERROR_PRODUCTS,
+  payload: {
+    error
+  }
+})
+
+export { getProducts, receiveProducts, addProduct, deleteProduct, updateProduct, errorProducts }
