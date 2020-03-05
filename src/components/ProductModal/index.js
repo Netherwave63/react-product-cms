@@ -75,7 +75,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
           </form>
         </section>
         <footer className="modal-card-foot">
-          <button className="button is-success" onClick={handleSubmit}>Save changes</button>
+          <button className="button is-info" onClick={handleSubmit}>Save changes</button>
           <button className="button" onClick={handleClick}>Cancel</button>
         </footer>
       </div>

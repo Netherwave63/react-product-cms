@@ -20,48 +20,76 @@ const ProductForm = (props) => {
 
   return (
     <form onSubmit={handleFormSubmission}>
-      <div className='field'>
-        <label className='label'>Product name:</label>
-        <div className='control'>
-          <input
-            className='input'
-            onChange={(e) => setProductName(e.target.value)}
-            placeholder='Please specify your product name'
-            required={true}
-            value={productName}
-          />
+      <div className='field is-horizontal'>
+        <div className='field-label'>
+          <label className='label'>Product name:</label>
         </div>
-      </div>
-      <div className='field'>
-        <label className='label'>Packaging material:</label>
-        <div className='control'>
-          <div className='select'>
-            <select
-              onChange={(e) => setPackagingMaterial(e.target.value)}
-              value={packagingMaterial}
-            >
-              <option>Plastic bag</option>
-              <option>Film</option>
-              <option>Tray</option>
-            </select>
+        <div className='field-body'>
+          <div className='control'>
+            <input
+              className='input'
+              onChange={(e) => setProductName(e.target.value)}
+              placeholder='Please specify your product name'
+              required={true}
+              style={{ minWidth: '280px' }}
+              value={productName}
+            />
           </div>
         </div>
       </div>
-      <div className='field'>
-        <label className='label'>Packaging method:</label>
-        <div className='control'>
-          <div className='select'>
-            <select
-              onChange={(e) => setPackagingMethod(e.target.value)}
-              value={packagingMethod}
-            >
-              <option>Auto</option>
-              <option>Manual</option>
-            </select>
+
+      <div className='field is-horizontal'>
+        <div className='field-label'>
+          <label className='label'>Packaging material:</label>
+        </div>
+        <div className='field-body'>
+          <div className='control'>
+            <div className='select'>
+              <select
+                onChange={(e) => setPackagingMaterial(e.target.value)}
+                value={packagingMaterial}
+              >
+                <option>Plastic bag</option>
+                <option>Film</option>
+                <option>Tray</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-      <button className='button is-link' type='submit'>Confirm</button>
+
+      <div className='field is-horizontal'>
+        <div className='field-label'>
+          <label className='label'>Packaging method:</label>
+        </div>
+        <div className='field-body'>
+          <div className='control'>
+            <div className='select'>
+              <select
+                onChange={(e) => setPackagingMethod(e.target.value)}
+                value={packagingMethod}
+              >
+                <option>Auto</option>
+                <option>Manual</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <button className='button is-info' type='submit'>
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   )
 }

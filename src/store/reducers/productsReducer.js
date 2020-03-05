@@ -5,7 +5,7 @@ const initialState = {
   products: [],
   error: null,
   searchKey: '',
-  sortKey: ''
+  sortKey: null
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -41,11 +41,11 @@ const productsReducer = (state = initialState, action) => {
 }
 
 function applySortProducts(state, action) {
-  const f = (a, b) => { return a.name < b.name ? 1 : -1 }
-  console.log(state.products.sort(f))
+  const sortKey = action.payload.sortKey
   return {
     ...state,
-    products: state.products.sort(f)
+    products: sortKey ? state.products.sort((a, b) => a.name < b.name ? -1 : 1) : state.products.sort((a, b) => a.name > b.name ? -1 : 1),
+    sortKey
   }
 }
 
