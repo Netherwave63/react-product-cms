@@ -39,7 +39,7 @@ function* addProduct(action) {
 
 function* deleteProduct(action) {
   try {
-    yield axios.delete(`api/v1/products/${action.payload.id}`)
+    yield axios.delete(`/api/v1/products/${action.payload.id}`)
     yield put(getProducts())
   } catch (err) {
     console.log(err)
