@@ -1,7 +1,10 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 import ACTIONS from '../actionTypes/products'
-import { receiveProducts, getProducts } from '../actionCreators/products'
+import { receiveProducts, addLocal, deleteLocal, updateLocal } from '../actionCreators/products'
+
+const baseURL = 'https://products-cms.herokuapp.com/api/v1/products'
+// const baseURL = 'http://localhost:5000/api/v1/products'
 
 function* watchProducts() {
   yield takeLatest(ACTIONS.GET_PRODUCTS, fetchProducts)
@@ -12,7 +15,7 @@ function* watchProducts() {
 
 function* fetchProducts() {
   try {
-    const res = yield axios.get('https://products-cms.herokuapp.com/api/v1/products')
+    const res = yield axios.get(baseURL)
     yield put(receiveProducts(res.data.data))
   } catch (err) {
     console.log(err)
@@ -26,12 +29,12 @@ function* addProduct(action) {
       packaging_material,
       packaging_method
     } = action.payload.product
-    yield axios.post('https://products-cms.herokuapp.com/api/v1/products', {
+    const res = yield axios.post(baseURL, {
       name,
       packaging_material,
       packaging_method
     })
-    yield put(getProducts())
+    yield put(addLocal(res.data.data))
   } catch (err) {
     console.log(err)
   }
@@ -39,8 +42,8 @@ function* addProduct(action) {
 
 function* deleteProduct(action) {
   try {
-    yield axios.delete(`https://products-cms.herokuapp.com/api/v1/products/${action.payload.id}`)
-    yield put(getProducts())
+    yield axios.delete(`${baseURL}/${action.payload.id}`)
+    yield put(deleteLocal(action.payload.id))
   } catch (err) {
     console.log(err)
   }
@@ -54,12 +57,12 @@ function* updateProduct(action) {
       packaging_material,
       packaging_method
     } = action.payload.product
-    yield axios.put(`https://products-cms.herokuapp.com/api/v1/products/${_id}`, {
+    const res = yield axios.put(`${baseURL}/${_id}`, {
       name,
       packaging_material,
       packaging_method
     })
-    yield put(getProducts())
+    yield put(updateLocal(res.data.data))
   } catch (err) {
     console.log(err)
   }

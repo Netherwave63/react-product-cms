@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getProducts, searchProducts, sortProducts } from '../../store/actionCreators/products'
+import { searchProducts, sortProducts } from '../../store/actionCreators/products'
 import Product from '../../components/Product'
 
-const ViewAll = ({ sortKey, searchKey, isLoading, products, getProducts, searchProducts, sortProducts }) => {
+const ViewAll = ({ sortKey, searchKey, isLoading, products, searchProducts, sortProducts }) => {
   const [text, setText] = useState('')
-  products = products.filter(product => product.name.includes(searchKey))
-
-  useEffect(() => {
-    getProducts()
-  }, [])
+  products = products.filter(product => product.name.toLowerCase().includes(searchKey.toLowerCase()))
 
   useEffect(() => {
     searchProducts(text)
-  }, [text])
-
-  const handleChange = (e) => {
-    setText(e.target.value)
-  }
+  }, [searchProducts, text])
 
   return (
     <>
@@ -25,15 +17,15 @@ const ViewAll = ({ sortKey, searchKey, isLoading, products, getProducts, searchP
         <div className='control has-icons-left'>
           <input 
             className='input'
-            onChange={handleChange} 
+            onChange={(e) => setText(e.target.value)} 
             placeholder='Search product name'
             required
             style={{ width: '240px' }}
             type='text'  
             value={text}
           />
-          <span class="icon is-small is-left">
-            <i class="fas fa-search"></i>
+          <span className="icon is-small is-left">
+            <i className="fas fa-search"></i>
           </span>
         </div>
       </div>
@@ -45,7 +37,7 @@ const ViewAll = ({ sortKey, searchKey, isLoading, products, getProducts, searchP
               <tr>
                 <th>
                   Product name &nbsp;
-                  <a onClick={() => sortProducts(!sortKey)}>
+                  <a onClick={() => sortProducts(!sortKey)} href="#">
                     <i className={sortKey === null ? "fas fa-sort" : (sortKey === true ? 'fas fa-sort-up' : 'fas fa-sort-down')} style={sortKey === null ? undefined : (sortKey === true ? {display: 'inline-block', transform: 'translateY(4px)'} : {display: 'inline-block', transform: 'translateY(-4px)'})}></i>
                   </a>
                 </th>
@@ -77,7 +69,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getProducts: () => dispatch(getProducts()),
   searchProducts: (text) => dispatch(searchProducts(text)),
   sortProducts: (sortKey) => dispatch(sortProducts(sortKey))
 })

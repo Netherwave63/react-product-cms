@@ -28,6 +28,24 @@ const productsReducer = (state = initialState, action) => {
         ...state,
         error: action.payload.error
       }
+    case ACTIONS.ADD_LOCAL:
+      return {
+        ...state,
+        products: [
+          ...state.products,
+          action.payload.product
+        ]
+      }
+    case ACTIONS.DELETE_LOCAL: 
+      return {
+        ...state,
+        products: state.products.filter(product => product._id !== action.payload.id)
+      }
+    case ACTIONS.UPDATE_LOCAL:
+      return {
+        ...state,
+        products: state.products.map(product => product._id === action.payload.product._id ? action.payload.product : product)
+      }
     case ACTIONS.SEARCH_PRODUCTS:
       return {
         ...state,

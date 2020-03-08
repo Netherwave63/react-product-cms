@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 const ProductForm = (props) => {
   const { handleSubmit } = props
-  const [productName, setProductName] = useState(props.product && props.product.name || '')
-  const [packagingMaterial, setPackagingMaterial] = useState(props.product && props.product.packaging_material || 'Plastic bag')
-  const [packagingMethod, setPackagingMethod] = useState(props.product && props.product.packaging_method || 'Auto')
+  const [productName, setProductName] = useState((props.product && props.product.name) || '')
+  const [packagingMaterial, setPackagingMaterial] = useState((props.product && props.product.packaging_material) || 'Plastic bag')
+  const [packagingMethod, setPackagingMethod] = useState((props.product && props.product.packaging_method) || 'Auto')
 
   const handleFormSubmission = (e) => {
     e.preventDefault()
@@ -77,12 +77,12 @@ const ProductForm = (props) => {
         </div>
       </div>
 
-      <div class="field is-horizontal">
-        <div class="field-label">
+      <div className="field is-horizontal">
+        <div className="field-label">
         </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
+        <div className="field-body">
+          <div className="field">
+            <div className="control">
               <button className='button is-info' type='submit'>
                 Confirm
               </button>

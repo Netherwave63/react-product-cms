@@ -18,6 +18,13 @@ const addProduct = (product) => ({
   }
 })
 
+const addLocal = (product) => ({
+  type: ACTIONS.ADD_LOCAL,
+  payload: {
+    product
+  }
+})
+
 const deleteProduct = (id) => ({
   type: ACTIONS.DELETE_PRODUCT,
   payload: {
@@ -25,8 +32,22 @@ const deleteProduct = (id) => ({
   }
 })
 
+const deleteLocal = (id) => ({
+  type: ACTIONS.DELETE_LOCAL,
+  payload: {
+    id
+  }
+})
+
 const updateProduct = (product) => ({
   type: ACTIONS.UPDATE_PRODUCT,
+  payload: {
+    product
+  }
+})
+
+const updateLocal = (product) => ({
+  type: ACTIONS.UPDATE_LOCAL,
   payload: {
     product
   }
@@ -53,4 +74,16 @@ const sortProducts = (sortKey) => ({
   }
 })
 
-export { getProducts, receiveProducts, addProduct, deleteProduct, updateProduct, errorProducts, searchProducts, sortProducts }
+export { 
+  getProducts, 
+  receiveProducts, 
+  addProduct, 
+  addLocal,
+  deleteProduct,
+  deleteLocal,
+  updateProduct,
+  updateLocal, 
+  errorProducts, 
+  searchProducts, 
+  sortProducts 
+}

@@ -1,9 +1,11 @@
 import { all } from 'redux-saga/effects'
 import watchProducts from './products'
+import watchCustomers from './customers'
 
 function* rootSaga() {
   yield all([
-    watchProducts()
+    watchProducts(),
+    watchCustomers()
   ])
 }
 
