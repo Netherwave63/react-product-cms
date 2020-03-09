@@ -19,7 +19,7 @@ const App = ({ getProducts, getCustomers }) => {
 
   return (
     <div className='app'>
-      <h1 className='title'>Product CMS</h1>
+      <h1 className='title'>Product Management System</h1>
       <div className='media'>
         <div className='media-left'>
           <div className='box' style={{ minWidth: '180px' }}>

@@ -4,12 +4,12 @@ import DetailViewTable from './DetailViewTable'
 import CustomerProductModal from './CustomerProductModal'
 import { addNewProduct } from '../../store/actionCreators/customers'
 
-const DetailView = ({ customers, addNewProduct }) => {
-  return customers.length ? <DetailViewComponent customers={customers} addNewProduct={addNewProduct} /> : <p>No customer found</p>
+const DetailView = ({ customers, customerId , addNewProduct }) => {
+  return customers.length ? <DetailViewComponent customers={customers} customerId={customerId} addNewProduct={addNewProduct} /> : <p>No customer found</p>
 }
 
-const DetailViewComponent = ({ customers, addNewProduct }) => {
-  const [selectedCustomerId, setSelectedCustomerId] = useState(customers[0]._id)
+const DetailViewComponent = ({ customers, customerId, addNewProduct }) => {
+  const [selectedCustomerId, setSelectedCustomerId] = useState(customerId || customers[0]._id)
   const [isActive, setIsActive] = useState(false)
 
   const handleSubmit = async (product) => {
@@ -55,7 +55,7 @@ const DetailViewComponent = ({ customers, addNewProduct }) => {
         </div>
       </div>
       <DetailViewTable customer={customers.find(customer => customer._id === selectedCustomerId)} />
-      {isActive ? <CustomerProductModal setIsActive={setIsActive} handleSubmit={handleSubmit} /> : null}
+      {isActive ? <CustomerProductModal title='Add new product' setIsActive={setIsActive} handleSubmit={handleSubmit} /> : null}
     </>
   )
 }

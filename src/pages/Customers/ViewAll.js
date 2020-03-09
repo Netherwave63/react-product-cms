@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addCustomer, searchCustomers } from '../../store/actionCreators/customers'
+import { addCustomer, searchCustomers, sortCustomers } from '../../store/actionCreators/customers'
 import Customer from '../../components/Customer'
 
 const ViewAll = ({
   customers,
   searchKey,
+  sortKey,
   addCustomer,
-  searchCustomers
+  searchCustomers,
+  sortCustomers,
+  handleDetailView
 }) => {
   const [customerName, setCustomerName] = useState('')
   const [text, setText] = useState('')
@@ -76,13 +79,18 @@ const ViewAll = ({
       <table className='table is-hoverable is-fullwidth'>
         <tbody>
           <tr>
-            <th>Customer name</th>
+            <th>
+              Customer name &nbsp;
+              <a onClick={() => sortCustomers(!sortKey)} href="#">
+                <i className={sortKey === null ? "fas fa-sort" : (sortKey === true ? 'fas fa-sort-up' : 'fas fa-sort-down')} style={sortKey === null ? undefined : (sortKey === true ? {display: 'inline-block', transform: 'translateY(4px)'} : {display: 'inline-block', transform: 'translateY(-4px)'})}></i>
+              </a>
+            </th>
             <th>All products</th>
             <th>Actions</th>
           </tr>
           {customers.length ?
             customers.map(customer =>
-              <Customer key={customer._id} customer={customer} />
+              <Customer key={customer._id} customer={customer} handleDetailView={handleDetailView} />
             ) : (
               <tr>
                 <td>No customer found</td>
@@ -98,12 +106,14 @@ const ViewAll = ({
 
 const mapStateToProps = (state) => ({
   customers: state.customersState.customers,
-  searchKey: state.customersState.searchKey
+  searchKey: state.customersState.searchKey,
+  sortKey: state.customersState.sortKey_customers
 })
 
 const mapDispatchToProps = (dispatch) => ({
   addCustomer: (customer) => dispatch(addCustomer(customer)),
-  searchCustomers: (searchKey) => dispatch(searchCustomers(searchKey))
+  searchCustomers: (searchKey) => dispatch(searchCustomers(searchKey)),
+  sortCustomers: (sortKey) => dispatch(sortCustomers(sortKey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewAll)

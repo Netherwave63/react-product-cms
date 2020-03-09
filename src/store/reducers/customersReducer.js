@@ -4,7 +4,9 @@ const initialState = {
   loading: false,
   customers: [],
   error: null,
-  searchKey: ''
+  searchKey: '',
+  sortKey_customers: null,
+  sortKey_products: null
 }
 
 const customersReducer = (state = initialState, action) => {
@@ -51,6 +53,13 @@ const customersReducer = (state = initialState, action) => {
       return doUpdateLocalProduct(state, action)
     case ACTIONS.DELETE_LOCAL_PRODUCT:
       return doDeleteLocalProduct(state, action)
+    case ACTIONS.SORT_CUSTOMERS:
+      return doApplySortCustomers(state, action)
+    case ACTIONS.SORT_PRODUCTS:
+      return {
+        ...state,
+        sortKey_products: action.payload.sortKey
+      }
     default:
       return state
   }
@@ -133,6 +142,15 @@ const doDeleteLocalProduct = (state, action) => {
         return customer
       }
     })
+  }
+}
+
+function doApplySortCustomers(state, action) {
+  const sortKey_customers = action.payload.sortKey
+  return {
+    ...state,
+    customers: sortKey_customers ? state.customers.sort((a, b) => a.name < b.name ? -1 : 1) : state.customers.sort((a, b) => a.name > b.name ? -1 : 1),
+    sortKey_customers
   }
 }
 

@@ -3,8 +3,8 @@ import axios from 'axios'
 import ACTIONS from '../actionTypes/customers'
 import { addLocal, deleteLocal, updateLocal, receiveCustomers, addLocalProduct, updateLocalProduct, deleteLocalProduct } from '../actionCreators/customers'
 
-// const baseURL = 'https://products-cms.herokuapp.com/api/v1/customers'
-const baseURL = 'http://localhost:5000/api/v1/customers'
+const baseURL = 'https://products-cms.herokuapp.com/api/v1/customers'
+// const baseURL = 'http://localhost:5000/api/v1/customers'
 
 function* watchCustomers() {
   yield takeLatest(ACTIONS.GET_CUSTOMERS, getCustomers)
@@ -64,9 +64,10 @@ function* addNewProduct(action) {
 function* updateEntryProduct(action) {
   try {
     const res = yield axios.put(`${baseURL}/products/${action.payload.id}`, action.payload.product)
+    console.log('res: ', res)
     yield put(updateLocalProduct(action.payload.id, res.data.data))
   } catch (error) {
-    console.log(error)
+    console.log('error: ', error)
   }
 }
 

@@ -108,6 +108,20 @@ const deleteLocalProduct = (customerId, productId) => ({
   }
 })
 
+const sortCustomers = (sortKey) => ({
+  type: ACTIONS.SORT_CUSTOMERS,
+  payload: {
+    sortKey
+  }
+})
+
+const sortProducts = (sortKey) => ({
+  type: ACTIONS.SORT_PRODUCTS,
+  payload: {
+    sortKey
+  }
+})
+
 export {
   addCustomer,
   addLocal,
@@ -123,5 +137,7 @@ export {
   updateEntryProduct,
   updateLocalProduct,
   deleteEntryProduct,
-  deleteLocalProduct
+  deleteLocalProduct,
+  sortCustomers,
+  sortProducts
 }

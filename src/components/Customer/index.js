@@ -5,7 +5,8 @@ import { deleteCustomer, updateCustomer } from '../../store/actionCreators/custo
 const Customer = ({
   customer,
   deleteCustomer,
-  updateCustomer
+  updateCustomer,
+  handleDetailView
 }) => {
   const [isActive, setIsActive] = useState(false)
 
@@ -32,7 +33,7 @@ const Customer = ({
         &nbsp;
         <button className='button is-white' onClick={() => setIsActive(true)} style={style}><i className='fas fa-edit' style={{ color: 'dodgerblue' }} title='Edit customer'></i></button>
         &nbsp; &nbsp;
-        <button className='button is-white' style={style}><i class='fas fa-eye' style={{ color: 'mediumseagreen' }} title='Detail view'></i></button>
+        <button className='button is-white' onClick={() => handleDetailView(customer._id)} style={style}><i class='fas fa-eye' style={{ color: 'mediumseagreen' }} title='Detail view'></i></button>
         {isActive ? <ProductModal defaultName={customer.name} handleSubmit={handleSubmit} setIsActive={setIsActive} /> : null}
       </td>
     </tr>

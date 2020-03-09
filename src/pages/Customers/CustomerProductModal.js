@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 const CustomerProductModal = ({
+  defaultState = null,
   products,
+  title,
   handleSubmit,
   setIsActive
 }) => {
-  const [productName, setProductName] = useState(products[0].name)
-  const [weightPerPackage, setWeightPerPackage] = useState('')
-  const [packagePerCarton, setPackagePerCarton] = useState('')
+  const [productName, setProductName] = useState(defaultState ? defaultState.productName : products[0].name)
+  const [weightPerPackage, setWeightPerPackage] = useState(defaultState ? defaultState.weightPerPackage : '')
+  const [packagePerCarton, setPackagePerCarton] = useState(defaultState ? defaultState.packagePerCarton : '')
 
   const handleClick = () => {
     const product = {
@@ -16,6 +18,7 @@ const CustomerProductModal = ({
       weight_per_package: weightPerPackage,
       package_per_carton: packagePerCarton
     }
+    if (defaultState) product._id = defaultState._id
     handleSubmit(product)
   }
 
@@ -24,7 +27,7 @@ const CustomerProductModal = ({
       <div className="modal-background" onClick={() => setIsActive(false)}></div>
       <div className="modal-card">
         <div className="modal-card-head">
-          <p className="modal-card-title">Add new product</p>
+          <p className="modal-card-title">{title}</p>
           <button className="delete" aria-label="close" onClick={() => setIsActive(false)}></button>
         </div>
         <section className="modal-card-body">
