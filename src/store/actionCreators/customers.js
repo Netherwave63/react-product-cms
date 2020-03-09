@@ -25,9 +25,103 @@ const receiveCustomers = (customers) => ({
   }
 })
 
+const deleteCustomer = (id) => ({
+  type: ACTIONS.DELETE_CUSTOMER,
+  payload: {
+    id
+  }
+})
+
+const deleteLocal = (id) => ({
+  type: ACTIONS.DELETE_LOCAL,
+  payload: {
+    id
+  }
+})
+
+const updateCustomer = (customer) => ({
+  type: ACTIONS.UPDATE_CUSTOMER,
+  payload: {
+    customer
+  }
+})
+
+const updateLocal = (customer) => ({
+  type: ACTIONS.UPDATE_LOCAL,
+  payload: {
+    customer
+  }
+})
+
+const searchCustomers = (searchKey) => ({
+  type: ACTIONS.SEARCH_CUSTOMERS,
+  payload: {
+    searchKey
+  }
+})
+
+const addNewProduct = (id, product) => ({
+  type: ACTIONS.ADD_NEW_PRODUCT,
+  payload: {
+    id,
+    product
+  }
+})
+
+const addLocalProduct = (id, product) => ({
+  type: ACTIONS.ADD_LOCAL_PRODUCT,
+  payload: {
+    id,
+    product
+  }
+})
+
+const updateEntryProduct = (id, product) => ({
+  type: ACTIONS.UPDATE_ENTRY_PRODUCT,
+  payload: {
+    id,
+    product
+  }
+})
+
+const updateLocalProduct = (id, product) => ({
+  type: ACTIONS.UPDATE_LOCAL_PRODUCT,
+  payload: {
+    id,
+    product
+  }
+})
+
+const deleteEntryProduct = (customerId, productId) => ({
+  type: ACTIONS.DELETE_ENTRY_PRODUCT,
+  payload: {
+    customerId,
+    productId
+  }
+})
+
+const deleteLocalProduct = (customerId, productId) => ({
+  type: ACTIONS.DELETE_LOCAL_PRODUCT,
+  payload: {
+    customerId,
+    productId
+  }
+})
+
 export {
   addCustomer,
   addLocal,
   getCustomers,
-  receiveCustomers
+  receiveCustomers,
+  deleteCustomer,
+  deleteLocal,
+  updateCustomer,
+  updateLocal,
+  searchCustomers,
+  addNewProduct,
+  addLocalProduct,
+  updateEntryProduct,
+  updateLocalProduct,
+  deleteEntryProduct,
+  deleteLocalProduct
 }

@@ -2,32 +2,22 @@ import React, { useState, useEffect } from 'react'
 import SubHeader from '../../components/SubHeader'
 import Tabs from '../../components/Tabs'
 import ViewAll from './ViewAll'
-import AddNew from './AddNew'
-import { connect } from 'react-redux'
-import { getCustomers } from '../../store/actionCreators/customers'
+import DetailView from './DetailView'
 
-const Customers = ({ getCustomers }) => {
+const Customers = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-
-  useEffect(() => {
-    getCustomers()
-  }, [])
 
   return (
     <>
       <SubHeader title="Customers" />
-      <Tabs 
+      <Tabs
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
-        tabs={['View All', 'Add New']}
+        tabs={['View All', 'Detail View']}
       />
-      {currentIndex === 0 ? <ViewAll /> : <AddNew />}
+      {currentIndex === 0 ? <ViewAll /> : <DetailView />}
     </>
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getCustomers: () => dispatch(getCustomers())
-})
-
-export default connect(null, mapDispatchToProps)(Customers)
+export default Customers

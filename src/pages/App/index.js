@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Dashboard from '../Dashboard'
 import Products from '../Products'
@@ -7,8 +7,16 @@ import Archieves from '../Archieves'
 import Notes from '../Notes'
 import { Route, Switch } from 'react-router-dom'
 import ROUTES from '../../constants/routes'
+import { getProducts } from '../../store/actionCreators/products'
+import { getCustomers } from '../../store/actionCreators/customers'
+import { connect } from 'react-redux'
 
-const App = () => {
+const App = ({ getProducts, getCustomers }) => {
+  useEffect(() => {
+    getProducts()
+    getCustomers()
+  }, [])
+
   return (
     <div className='app'>
       <h1 className='title'>Product CMS</h1>
@@ -34,4 +42,9 @@ const App = () => {
   )
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => ({
+  getProducts: () => dispatch(getProducts()),
+  getCustomers: () => dispatch(getCustomers())
+})
+
+export default connect(null, mapDispatchToProps)(App)
