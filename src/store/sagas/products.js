@@ -27,12 +27,14 @@ function* addProduct(action) {
     const {
       name,
       packaging_material,
-      packaging_method
+      packaging_method,
+      weight_per_batch
     } = action.payload.product
     const res = yield axios.post(baseURL, {
       name,
       packaging_material,
-      packaging_method
+      packaging_method,
+      weight_per_batch
     })
     yield put(addLocal(res.data.data))
   } catch (err) {
@@ -55,12 +57,14 @@ function* updateProduct(action) {
       _id,
       name,
       packaging_material,
-      packaging_method
+      packaging_method,
+      weight_per_batch
     } = action.payload.product
     const res = yield axios.put(`${baseURL}/${_id}`, {
       name,
       packaging_material,
-      packaging_method
+      packaging_method,
+      weight_per_batch
     })
     yield put(updateLocal(res.data.data))
   } catch (err) {

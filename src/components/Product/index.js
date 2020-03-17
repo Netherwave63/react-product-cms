@@ -17,6 +17,7 @@ const Product = ({ product, deleteProduct }) => {
       <td>{product.name}</td>
       <td>{product.packaging_material}</td>
       <td>{product.packaging_method}</td>
+      <td>{`${product.weight_per_batch} kg`}</td>
       <td>
         <button className='button is-white' onClick={() => deleteProduct(product._id)} style={style} title='Delete product'><i className='fas fa-trash-alt' style={{ color: 'red' }}></i></button> &nbsp;
         &nbsp;

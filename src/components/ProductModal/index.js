@@ -6,6 +6,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
   const [productName, setProductName] = useState(product.name)
   const [packagingMaterial, setPackagingMaterial] = useState(product.packaging_material)
   const [packagingMethod, setPackagingMethod] = useState(product.packaging_method)
+  const [weightPerBatch, setWeightPerBatch] = useState(product.weight_per_batch || 0) // to edit
 
   const handleClick = () => {
     setIsActive(false)
@@ -16,7 +17,8 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
       _id: product._id,
       name: productName,
       packaging_material: packagingMaterial,
-      packaging_method: packagingMethod
+      packaging_method: packagingMethod,
+      weight_per_batch: parseInt(weightPerBatch)
     })
     setIsActive(false)
   }
@@ -70,6 +72,19 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
                     <option>Manual</option>
                   </select>
                 </div>
+              </div>
+            </div>
+            <div className='field'>
+              <label className='label'>Weight per batch (kg):</label>
+              <div className='control'>
+                <input
+                  className='input'
+                  onChange={(e) => setWeightPerBatch(e.target.value)}
+                  placeholder='Weight per batch run in kg'
+                  required={true}
+                  type='number'
+                  value={weightPerBatch}
+                />
               </div>
             </div>
           </form>

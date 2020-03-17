@@ -43,6 +43,7 @@ const ViewAll = ({ sortKey, searchKey, isLoading, products, searchProducts, sort
                 </th>
                 <th>Packaging material</th>
                 <th>Packaging method</th>
+                <th>Weight per batch (kg)</th>
                 <th>Actions</th>
               </tr>
               {products.length ? (
