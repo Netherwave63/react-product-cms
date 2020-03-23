@@ -1,28 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react';
+import { connect } from 'react-redux';
+import { addProduct } from '../../../store/actionCreators/products';
 
-const ProductForm = (props) => {
-  const { handleSubmit } = props
-  const [productName, setProductName] = useState((props.product && props.product.name) || '')
-  const [packagingMaterial, setPackagingMaterial] = useState((props.product && props.product.packaging_material) || 'Plastic bag')
-  const [packagingMethod, setPackagingMethod] = useState((props.product && props.product.packaging_method) || 'Auto')
-  const [weightPerBatch, setWeightPerBatch] = useState(props.product && props.product.weight_per_batch || '')
+const AddNew = ({
+  // dispatch
+  addProduct
+}) => {
+  const [name, setName] = useState('');
+  const [packaging_material, setPackagingMaterial] = useState('Plastic bag');
+  const [packaging_method, setPackagingMethod] = useState('Auto');
+  const [weight_per_batch, setWeightPerBatch] = useState('');
 
-  const handleFormSubmission = (e) => {
-    e.preventDefault()
-    handleSubmit({
-      name: productName,
-      packaging_material: packagingMaterial,
-      packaging_method: packagingMethod,
-      weight_per_batch: parseInt(weightPerBatch)
-    })
-    setProductName('')
-    setPackagingMaterial('Plastic bag')
-    setPackagingMethod('Auto')
-    setWeightPerBatch('')
-  }
+  const inputRef = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await addProduct({
+      name,
+      packaging_material,
+      packaging_method,
+      weight_per_batch
+    });
+    setName('');
+    setPackagingMaterial('Plastic bag');
+    setPackagingMethod('Auto');
+    setWeightPerBatch('');
+    inputRef.current.focus();
+  };
 
   return (
-    <form onSubmit={handleFormSubmission}>
+    <form onSubmit={handleSubmit}>
       <div className='field is-horizontal'>
         <div className='field-label'>
           <label className='label'>Product name:</label>
@@ -31,11 +38,12 @@ const ProductForm = (props) => {
           <div className='control'>
             <input
               className='input'
-              onChange={(e) => setProductName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               placeholder='Please specify your product name'
+              ref={inputRef}
               required={true}
               style={{ minWidth: '280px' }}
-              value={productName}
+              value={name}
             />
           </div>
         </div>
@@ -50,7 +58,7 @@ const ProductForm = (props) => {
             <div className='select'>
               <select
                 onChange={(e) => setPackagingMaterial(e.target.value)}
-                value={packagingMaterial}
+                value={packaging_material}
               >
                 <option>Plastic bag</option>
                 <option>Film</option>
@@ -70,7 +78,7 @@ const ProductForm = (props) => {
             <div className='select'>
               <select
                 onChange={(e) => setPackagingMethod(e.target.value)}
-                value={packagingMethod}
+                value={packaging_method}
               >
                 <option>Auto</option>
                 <option>Manual</option>
@@ -93,7 +101,7 @@ const ProductForm = (props) => {
               required={true}
               style={{ minWidth: '280px' }}
               type='number'
-              value={weightPerBatch}
+              value={weight_per_batch}
             />
           </div>
         </div>
@@ -113,7 +121,11 @@ const ProductForm = (props) => {
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default ProductForm
+const mapDispatchToProps = (dispatch) => ({
+  addProduct: (product) => dispatch(addProduct(product))
+});
+
+export default connect(null, mapDispatchToProps)(AddNew);

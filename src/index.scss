@@ -30,3 +30,8 @@ body {
   from { top: -32px; }
   to { top: 32px; }
 }
+
+/* level */
+.level-item {
+  justify-content: flex-start;
+}

@@ -1,27 +1,29 @@
 import React, { useState } from 'react'
-import { updateProduct } from '../../store/actionCreators/products'
-import { connect } from 'react-redux'
 
-const ProductModal = ({ product, setIsActive, updateProduct }) => {
-  const [productName, setProductName] = useState(product.name)
-  const [packagingMaterial, setPackagingMaterial] = useState(product.packaging_material)
-  const [packagingMethod, setPackagingMethod] = useState(product.packaging_method)
-  const [weightPerBatch, setWeightPerBatch] = useState(product.weight_per_batch || 0) // to edit
+const Edit = ({ 
+  // props
+  product,
+  onUpdateProduct,
+  setIsActive
+}) => {
+  const [name, setName] = useState(product.name);
+  const [packaging_material, setPackagingMaterial] = useState(product.packaging_material);
+  const [packaging_method, setPackagingMethod] = useState(product.packaging_method);
+  const [weight_per_batch, setWeightPerBatch] = useState(product.weight_per_batch);
 
   const handleClick = () => {
-    setIsActive(false)
-  }
+    setIsActive(false);
+  };
 
   const handleSubmit = () => {
-    updateProduct({
+    onUpdateProduct({
       _id: product._id,
-      name: productName,
-      packaging_material: packagingMaterial,
-      packaging_method: packagingMethod,
-      weight_per_batch: parseInt(weightPerBatch)
-    })
-    setIsActive(false)
-  }
+      name,
+      packaging_material,
+      packaging_method,
+      weight_per_batch
+    });
+  };
 
   return (
     <div className="modal is-active">
@@ -38,10 +40,10 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
               <div className='control'>
                 <input
                   className='input'
-                  onChange={(e) => setProductName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder='Please specify your product name'
                   required={true}
-                  value={productName}
+                  value={name}
                 />
               </div>
             </div>
@@ -51,7 +53,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
                 <div className='select'>
                   <select
                     onChange={(e) => setPackagingMaterial(e.target.value)}
-                    value={packagingMaterial}
+                    value={packaging_material}
                   >
                     <option>Plastic bag</option>
                     <option>Film</option>
@@ -66,7 +68,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
                 <div className='select'>
                   <select
                     onChange={(e) => setPackagingMethod(e.target.value)}
-                    value={packagingMethod}
+                    value={packaging_method}
                   >
                     <option>Auto</option>
                     <option>Manual</option>
@@ -83,7 +85,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
                   placeholder='Weight per batch run in kg'
                   required={true}
                   type='number'
-                  value={weightPerBatch}
+                  value={weight_per_batch}
                 />
               </div>
             </div>
@@ -95,11 +97,7 @@ const ProductModal = ({ product, setIsActive, updateProduct }) => {
         </footer>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  updateProduct: (product) => dispatch(updateProduct(product))
-})
-
-export default connect(null, mapDispatchToProps)(ProductModal)
+export default Edit;

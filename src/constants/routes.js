@@ -1,9 +1,7 @@
 const ROUTES = {
   DASHBOARD: '/',
   PRODUCTS: '/products',
-  CUSTOMERS: '/customers',
-  ARCHIEVES: '/archieves',
-  NOTES: '/notes'
-}
+  CUSTOMERS: '/customers'
+};
 
-export default ROUTES
+export default ROUTES;

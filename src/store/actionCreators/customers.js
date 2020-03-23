@@ -1,143 +1,139 @@
-import ACTIONS from '../actionTypes/customers'
+import ACTIONS from '../actionTypes/customers';
 
-const addCustomer = (customer) => ({
-  type: ACTIONS.ADD_CUSTOMER,
-  payload: {
-    customer
-  }
-})
-
-const addLocal = (customer) => ({
-  type: ACTIONS.ADD_LOCAL,
-  payload: {
-    customer
-  }
-})
-
+// GET request
 const getCustomers = () => ({
   type: ACTIONS.GET_CUSTOMERS
-})
+});
 
 const receiveCustomers = (customers) => ({
   type: ACTIONS.RECEIVE_CUSTOMERS,
   payload: {
     customers
   }
-})
+});
 
-const deleteCustomer = (id) => ({
+// POST request
+const addCustomer = (customer) => ({
+  type: ACTIONS.ADD_CUSTOMER,
+  payload: {
+    customer
+  }
+});
+
+const addLocal = (customer) => ({
+  type: ACTIONS.ADD_CLOCAL,
+  payload: {
+    customer
+  }
+});
+
+// DELETE request
+const deleteCustomer = (_id) => ({
   type: ACTIONS.DELETE_CUSTOMER,
   payload: {
-    id
+    _id
   }
-})
+});
 
-const deleteLocal = (id) => ({
-  type: ACTIONS.DELETE_LOCAL,
+const deleteLocal = (_id) => ({
+  type: ACTIONS.DELETE_CLOCAL,
   payload: {
-    id
+    _id
   }
-})
+});
 
+// PUT request
 const updateCustomer = (customer) => ({
   type: ACTIONS.UPDATE_CUSTOMER,
   payload: {
     customer
   }
-})
+});
 
 const updateLocal = (customer) => ({
-  type: ACTIONS.UPDATE_LOCAL,
+  type: ACTIONS.UPDATE_CLOCAL,
   payload: {
     customer
   }
-})
+});
 
-const searchCustomers = (searchKey) => ({
-  type: ACTIONS.SEARCH_CUSTOMERS,
+// utils
+const updateCurrentCustomer = (_id) => ({
+  type: ACTIONS.CURRENT_CUSTOMER,
   payload: {
-    searchKey
+    _id
   }
-})
+});
 
-const addNewProduct = (id, product) => ({
-  type: ACTIONS.ADD_NEW_PRODUCT,
+// POST request -> product
+const addProduct = (_id, product) => ({
+  type: ACTIONS.ADD_CPRODUCT,
   payload: {
-    id,
+    _id,
     product
   }
-})
+});
 
-const addLocalProduct = (id, product) => ({
-  type: ACTIONS.ADD_LOCAL_PRODUCT,
+const addProductLocal = (_id, product) => ({
+  type: ACTIONS.ADD_CPLOCAL,
   payload: {
-    id,
+    _id,
     product
   }
-})
+});
 
-const updateEntryProduct = (id, product) => ({
-  type: ACTIONS.UPDATE_ENTRY_PRODUCT,
+// DELETE request -> product
+// @params product -> { _id: <customer.products[i].product_id> }
+const deleteProduct = (_id, product) => ({
+  type: ACTIONS.DELETE_CPRODUCT,
   payload: {
-    id,
+    _id,
     product
   }
-})
+});
 
-const updateLocalProduct = (id, product) => ({
-  type: ACTIONS.UPDATE_LOCAL_PRODUCT,
+const deleteProductLocal = (_id, product) => ({
+  type: ACTIONS.DELETE_CPLOCAL,
   payload: {
-    id,
+    _id,
     product
   }
-})
+});
 
-const deleteEntryProduct = (customerId, productId) => ({
-  type: ACTIONS.DELETE_ENTRY_PRODUCT,
+// UPDATE request -> product
+const updateProduct = (_id, product) => ({
+  type: ACTIONS.UPDATE_CPRODUCT,
   payload: {
-    customerId,
-    productId
+    _id,
+    product
   }
-})
+});
 
-const deleteLocalProduct = (customerId, productId) => ({
-  type: ACTIONS.DELETE_LOCAL_PRODUCT,
+const updateProductLocal = (_id, product) => ({
+  type: ACTIONS.UPDATE_CPLOCAL,
   payload: {
-    customerId,
-    productId
+    _id,
+    product
   }
-})
-
-const sortCustomers = (sortKey) => ({
-  type: ACTIONS.SORT_CUSTOMERS,
-  payload: {
-    sortKey
-  }
-})
-
-const sortProducts = (sortKey) => ({
-  type: ACTIONS.SORT_PRODUCTS,
-  payload: {
-    sortKey
-  }
-})
+});
 
 export {
-  addCustomer,
-  addLocal,
+  // api
   getCustomers,
   receiveCustomers,
+  addCustomer,
+  addLocal,
   deleteCustomer,
   deleteLocal,
   updateCustomer,
   updateLocal,
-  searchCustomers,
-  addNewProduct,
-  addLocalProduct,
-  updateEntryProduct,
-  updateLocalProduct,
-  deleteEntryProduct,
-  deleteLocalProduct,
-  sortCustomers,
-  sortProducts
-}
+  // utils
+  updateCurrentCustomer,
+  // products
+  addProduct,
+  addProductLocal,
+  deleteProduct,
+  deleteProductLocal,
+  updateProduct,
+  updateProductLocal
+};

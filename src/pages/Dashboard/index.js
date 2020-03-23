@@ -1,42 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Header from '../../components/Header';
+import Tabs from '../../components/Tabs';
+import Planning from './Planning';
 
 const Dashboard = () => {
-  return (
-    <table className="table">
-      <tbody>
-        <tr>
-          <th>Date</th>
-          <th>Lot No.</th>
-          <th>Product Name</th>
-          <th>Customer</th>
-          <th>Estimate Output (ctn)</th>
-          <th>Estimate Output (ctn)</th>
-          <th>Loose Package</th>
-          <th>Remark</th>
-        </tr>
-        <tr>
-          <td>17/02/2020</td>
-          <td>B15</td>
-          <td>Cheese finger</td>
-          <td>CHXCS</td>
-          <td>350</td>
-          <td>350</td>
-          <td>15</td>
-          <td>No remark</td>
-        </tr>
-        <tr>
-          <td>17/02/2020</td>
-          <td>B15</td>
-          <td>Cheese finger</td>
-          <td>CHXCS</td>
-          <td>350</td>
-          <td>350</td>
-          <td>15</td>
-          <td>No remark</td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-export default Dashboard
+  return (
+    <>
+      <Header heading='Dashboard' />
+      <Tabs 
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        tabs={['Planning']}
+      />
+      {currentIndex === 0 ? <Planning /> : null}
+    </>
+  );
+};
+
+export default Dashboard;

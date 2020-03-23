@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Success = ({ text, setIsActive }) => {
+const Alert = ({ text, setIsActive }) => {
   return (
     <div className='alert-message' style={{ maxWidth: '480px' }}>
-      <div className='message is-info'>
+      <div className='message is-danger'>
         <div className='message-header'>
-          <p>Success</p>
+          <p>Alert</p>
           <button className='delete' aria-label='delete' onClick={() => setIsActive(false)}></button>
         </div>
         <div className='message-body'>
@@ -16,4 +16,4 @@ const Success = ({ text, setIsActive }) => {
   )
 }
 
-export default Success
+export default Alert

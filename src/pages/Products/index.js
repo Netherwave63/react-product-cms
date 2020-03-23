@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import SubHeader from '../../components/SubHeader'
-import Tabs from '../../components/Tabs'
-import ViewAll from './ViewAll'
-import AddNew from './AddNew'
+import React, { useState } from 'react';
+import Header from '../../components/Header';
+import Tabs from '../../components/Tabs';
+import ViewAll from './ViewAll';
+import AddNew from './AddNew';
 
-const Products = ({ getProducts }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+const Products = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
-      <SubHeader title='Products' />
-      <Tabs
+      <Header heading={'Products'} />
+      <Tabs 
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
-        tabs={['View All', 'Add New Product']}
+        tabs={['View all', 'Add new']}
       />
       {currentIndex === 0 ? <ViewAll /> : <AddNew />}
     </>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

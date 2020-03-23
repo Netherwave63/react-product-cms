@@ -1,10 +1,12 @@
-import productsReducer from './productsReducer'
-import customersReducer from './customersReducer'
-import { combineReducers } from 'redux'
+import productsReducer from './productsReducer';
+import customersReducer from './customersReducer';
+import dashboardReducer from './dashboardReducer';
+import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
   productsState: productsReducer,
-  customersState: customersReducer
-})
+  customersState: customersReducer,
+  dashboardState: dashboardReducer
+});
 
-export default rootReducer
+export default rootReducer;

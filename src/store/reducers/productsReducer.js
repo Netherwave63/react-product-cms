@@ -1,33 +1,26 @@
-import ACTIONS from '../actionTypes/products'
+import ACTIONS from '../actionTypes/products';
 
 const initialState = {
   loading: false,
   products: [],
-  error: null,
-  searchKey: '',
-  sortKey: null
-}
+  error: null
+};
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
+    // GET request
     case ACTIONS.GET_PRODUCTS:
       return {
         ...state,
-        loading: true,
-        error: null
-      }
+        loading: true
+      };
     case ACTIONS.RECEIVE_PRODUCTS:
       return {
         ...state,
-        products: action.payload.products,
         loading: false,
-        error: null
-      }
-    case ACTIONS.ERROR_PRODUCTS:
-      return {
-        ...state,
-        error: action.payload.error
-      }
+        products: action.payload.products
+      };
+    // POST request
     case ACTIONS.ADD_LOCAL:
       return {
         ...state,
@@ -35,36 +28,22 @@ const productsReducer = (state = initialState, action) => {
           ...state.products,
           action.payload.product
         ]
-      }
-    case ACTIONS.DELETE_LOCAL: 
+      };
+    // DELETE request
+    case ACTIONS.DELETE_LOCAL:
       return {
         ...state,
-        products: state.products.filter(product => product._id !== action.payload.id)
-      }
+        products: state.products.filter(product => product._id !== action.payload._id)
+      };
+    // PUT request
     case ACTIONS.UPDATE_LOCAL:
       return {
         ...state,
         products: state.products.map(product => product._id === action.payload.product._id ? action.payload.product : product)
-      }
-    case ACTIONS.SEARCH_PRODUCTS:
-      return {
-        ...state,
-        searchKey: action.payload.searchKey
-      }
-    case ACTIONS.SORT_PRODUCTS:
-      return applySortProducts(state, action)
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-function applySortProducts(state, action) {
-  const sortKey = action.payload.sortKey
-  return {
-    ...state,
-    products: sortKey ? state.products.sort((a, b) => a.name < b.name ? -1 : 1) : state.products.sort((a, b) => a.name > b.name ? -1 : 1),
-    sortKey
-  }
-}
-
-export default productsReducer
+export default productsReducer;

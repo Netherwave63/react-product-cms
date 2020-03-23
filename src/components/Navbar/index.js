@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ROUTES from '../../constants/routes'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ROUTES from '../../constants/routes';
 
 const Navbar = () => {
   return (
@@ -23,14 +23,8 @@ const Navbar = () => {
       <ul className='menu-list'>
         <li><Link className='navbar-item' to={ROUTES.CUSTOMERS}>Customers</Link></li>
       </ul>
-      <p className='menu-label'>
-        Archieves
-      </p>
-      <ul className='menu-list'>
-        <li><Link className='navbar-item' to={ROUTES.ARCHIEVES}>Archieves</Link></li>
-      </ul>
     </aside>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
