@@ -15,7 +15,7 @@ const Batches = ({
           className="input"
           onChange={(e) => updateProductionBatches(e.target.value)} 
           placeholder="Batches run in unit"
-          type="text"
+          type="number"
           value={productionBatches ? productionBatches : ''}
         />
       </p>
