@@ -1,29 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../constants/routes';
 
 const Navbar = () => {
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <aside className='menu'>
-      <p className='menu-label'>
-        General
-      </p>
-      <ul className='menu-list'>
-        <li><Link className='navbar-item' to={ROUTES.DASHBOARD}>Dashboard</Link></li>
-      </ul>
-      <p className='menu-label'>
-        Products
-      </p>
-      <ul className='menu-list'>
-        <li><Link className='navbar-item' to={ROUTES.PRODUCTS}>Products</Link></li>
-      </ul>
-      <p className='menu-label'>
-        Customers
-      </p>
-      <ul className='menu-list'>
-        <li><Link className='navbar-item' to={ROUTES.CUSTOMERS}>Customers</Link></li>
-      </ul>
-    </aside>
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <h1 className="navbar-item" style={{ fontSize: "20px" }}>Product management system</h1>
+        <a role="button" className={isActive ? "is-active navbar-burger burger" : "navbar-burger burger"} aria-label="menu" aria-expanded="false" data-target="navbar" onClick={() => setIsActive(!isActive)}>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="tr"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbar" className={isActive ? "is-active navbar-menu" : "navbar-menu"}>
+        <div class="navbar-start">
+          <a class="navbar-item">
+            <Link to={ROUTES.DASHBOARD} onClick={() => setIsActive(!isActive)}>Dashboard</Link>
+          </a>
+
+          <a class="navbar-item">
+            <Link to={ROUTES.PRODUCTS} onClick={() => setIsActive(!isActive)}>Products</Link>
+          </a>
+
+          <a class="navbar-item">
+            <Link to={ROUTES.CUSTOMERS} onClick={() => setIsActive(!isActive)}>Customers</Link>
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 };
 

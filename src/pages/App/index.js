@@ -21,23 +21,14 @@ const App = ({
 
   return (
     <div className='app'>
-      <h1 className='title'>Product Management System</h1>
-      <div className='media'>
-        <div className='media-left'>
-          <div className='box' style={{ minWidth: '180px' }}>
-            <Navbar />
-          </div>
-        </div>
-        <div className='media-content'>
-          <main className='box'>
-            <Switch>
-              <Route path={ROUTES.PRODUCTS} component={Products} />
-              <Route path={ROUTES.CUSTOMERS} component={Customers} />
-              <Route path={ROUTES.DASHBOARD} component={Dashboard} />
-            </Switch>
-          </main>
-        </div>
-      </div>
+      <Navbar />
+      <main>
+        <Switch>
+          <Route path={ROUTES.PRODUCTS} component={Products} />
+          <Route path={ROUTES.CUSTOMERS} component={Customers} />
+          <Route path={ROUTES.DASHBOARD} component={Dashboard} />
+        </Switch>
+      </main>
     </div>
   );
 };
