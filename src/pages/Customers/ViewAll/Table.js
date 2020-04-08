@@ -4,14 +4,16 @@ import Data from './Data';
 const Table = ({
   // props
   customers,
-  setCurrentIndex
+  setCurrentIndex,
+  sortKey,
+  onSort
 }) => {
   return (
     <div className="table-container">
       <table className='table is-hoverable is-fullwidth'>
         <tbody>
           <tr>
-            <th>Customer name</th>
+            <th>Customer name&nbsp;&nbsp;<i className={sortKey === 'NAME' ? "fas fa-angle-down is-green" : "fas fa-angle-up is-grey"} onClick={() => onSort('NAME')}></i></th>
             <th>All products</th>
             <th>Actions</th>
           </tr>

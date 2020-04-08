@@ -33,6 +33,18 @@ main {
   margin-bottom: 1.5rem !important;
 }
 
+.is-green {
+  color: mediumseagreen;
+}
+
+.is-grey {
+  color: #999;
+}
+
+i:focus, i:hover, i:active {
+  cursor: pointer;
+}
+
 @keyframes slide-down {
   from { top: -32px; }
   to { top: 32px; }
