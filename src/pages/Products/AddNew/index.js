@@ -63,6 +63,7 @@ const AddNew = ({
                 <option>Plastic bag</option>
                 <option>Film</option>
                 <option>Tray</option>
+                <option>Gift box</option>
               </select>
             </div>
           </div>
