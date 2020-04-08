@@ -8,10 +8,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <h1 className="navbar-item" style={{ fontSize: "20px" }}>Product management system</h1>
+        <h1 className="navbar-item" style={{ fontSize: "22px" }}>Product management system</h1>
         <a role="button" className={isActive ? "is-active navbar-burger burger" : "navbar-burger burger"} aria-label="menu" aria-expanded="false" data-target="navbar" onClick={() => setIsActive(!isActive)}>
           <span aria-hidden="true"></span>
-          <span aria-hidden="tr"></span>
+          <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
@@ -23,11 +23,11 @@ const Navbar = () => {
           </a>
 
           <a class="navbar-item">
-            <Link to={ROUTES.PRODUCTS} onClick={() => setIsActive(!isActive)}>Products</Link>
-          </a>
-
-          <a class="navbar-item">
             <Link to={ROUTES.CUSTOMERS} onClick={() => setIsActive(!isActive)}>Customers</Link>
+          </a>
+          
+          <a class="navbar-item">
+            <Link to={ROUTES.PRODUCTS} onClick={() => setIsActive(!isActive)}>Products</Link>
           </a>
         </div>
       </div>

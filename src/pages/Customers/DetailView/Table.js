@@ -7,7 +7,7 @@ const Table = ({
   customer
 }) => {
   return (
-    <>
+    <div className="table-container">
       <table className='table is-hoverable is-fullwidth'>
         <tbody>
           <tr>
@@ -31,7 +31,7 @@ const Table = ({
           }
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

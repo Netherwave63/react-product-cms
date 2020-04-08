@@ -20,7 +20,7 @@ const App = ({
   }, []);
 
   return (
-    <div className='app'>
+    <div className='app container'>
       <Navbar />
       <main>
         <Switch>
