@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import Table from './Table';
 import Top from './Top';
@@ -12,6 +12,8 @@ const ViewAll = ({
   products,
   customers
 }) => {
+  const [search, setSearch] = useState('');
+
   return (
     <>
       {loading ? (
@@ -19,9 +21,9 @@ const ViewAll = ({
       ) : (
         products.length ? (
           <>
-            <Top />
-            <Entry array={customers} text='customer' />
-            <Table customers={customers} setCurrentIndex={setCurrentIndex} />
+            <Top search={search} setSearch={setSearch} />
+            <Entry array={customers.filter(customer => customer.name.toLowerCase().includes(search.toLowerCase()))} text='customer' />
+            <Table customers={customers.filter(customer => customer.name.toLowerCase().includes(search.toLowerCase()))} setCurrentIndex={setCurrentIndex} />
           </>
         ) : (
           <p>No product found</p>
