@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateSelectedProduct } from '../../../store/actionCreators/dashboard';
+import { sortBy } from 'lodash';
 
 const ProductSelect = ({
   // state
@@ -18,7 +19,7 @@ const ProductSelect = ({
             style={{ minWidth: '240px' }}
             value={selectedProduct}
           >
-            {products.map(product =>
+            {sortBy(products, 'name').map(product =>
               <option key={product._id} value={product._id}>{product.name}</option>
             )}
           </select>

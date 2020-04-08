@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateCurrentCustomer } from '../../../store/actionCreators/customers';
+import { sortBy } from 'lodash';
 
 const CustomerSelect = ({
   // state
@@ -18,7 +19,7 @@ const CustomerSelect = ({
             style={{ minWidth: '240px' }}
             value={currentCustomer}
           >
-            {customers.map(customer =>
+            {sortBy(customers, 'name').map(customer =>
               <option key={customer._id} value={customer._id}>{customer.name}</option>
             )}
           </select>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addOrder } from '../../../store/actionCreators/dashboard';
 import { v4 } from 'uuid';
+import { sortBy } from 'lodash';
 
 const AddNew = ({
   // props
@@ -67,7 +68,7 @@ const AddNew = ({
                     onChange={(e) => setCustomerId(e.target.value)}
                     value={customerId}
                   >
-                    {customers.map(customer =>
+                    {sortBy(customers, 'name').map(customer =>
                       <option key={customer._id} value={customer._id}>{customer.name}</option>
                     )}
                   </select>
