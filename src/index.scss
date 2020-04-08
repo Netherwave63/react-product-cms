@@ -28,6 +28,11 @@ main {
   animation-duration: .3s;
 }
 
+.entry-info {
+  color: #999  ;
+  margin-bottom: 1.5rem !important;
+}
+
 @keyframes slide-down {
   from { top: -32px; }
   to { top: 32px; }

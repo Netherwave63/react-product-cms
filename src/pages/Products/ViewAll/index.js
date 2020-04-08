@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Table from './Table';
+import Entry from '../../../components/Entry';
 
 const ViewAll = ({
   // state
@@ -12,7 +13,10 @@ const ViewAll = ({
       {loading ? (
         <p>Fetching data...</p>
       ) : (
-        <Table products={products} />
+        <>
+          <Entry array={products} text='product' />
+          <Table products={products} />
+        </>
       )}
     </>
   );

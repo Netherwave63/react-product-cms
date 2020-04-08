@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import Table from './Table';
 import Top from './Top';
+import Entry from '../../../components/Entry';
 
 const ViewAll = ({
   // props
@@ -19,6 +20,7 @@ const ViewAll = ({
         products.length ? (
           <>
             <Top />
+            <Entry array={customers} text='customer' />
             <Table customers={customers} setCurrentIndex={setCurrentIndex} />
           </>
         ) : (
