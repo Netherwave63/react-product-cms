@@ -75,6 +75,7 @@ const AddNew = ({
               <label className='label'>Weight per package (kg):</label>
               <div className='control'>
                 <input
+                  autoFocus={true}
                   className='input'
                   onChange={(e) => setWeightPerPackage(e.target.value)}
                   placeholder='Weight per package in kg'

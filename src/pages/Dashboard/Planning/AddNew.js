@@ -93,6 +93,7 @@ const AddNew = ({
               <label className='label'>Customer orders:</label>
               <div className='control'>
                 <input
+                  autoFocus={true}
                   className='input'
                   onChange={(e) => setCustomerOrders(e.target.value)}
                   placeholder='Customer orders'

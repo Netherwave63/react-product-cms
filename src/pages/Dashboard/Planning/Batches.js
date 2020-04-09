@@ -12,6 +12,7 @@ const Batches = ({
     <div className="field has-addons">
       <p className="control">
         <input 
+          autoFocus={true}
           className="input"
           onChange={(e) => updateProductionBatches(e.target.value)} 
           placeholder="Batches run in unit"

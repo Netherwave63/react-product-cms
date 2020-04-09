@@ -37,6 +37,7 @@ const AddNew = ({
         <div className='field-body'>
           <div className='control'>
             <input
+              autoFocus={true}
               className='input'
               onChange={(e) => setName(e.target.value)}
               placeholder='Please specify your product name'
