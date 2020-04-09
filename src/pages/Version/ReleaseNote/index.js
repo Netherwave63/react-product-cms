@@ -3,7 +3,7 @@ import React from 'react';
 const ReleaseNote = () => {
   return (
     <>
-      <p><strong>PMS 1.1.0</strong></p>
+      <p><strong>PMS 1.1.0</strong> (9 April)</p>
       <br />
       <div className='content'>
         <dl>
@@ -52,6 +52,8 @@ const ReleaseNote = () => {
           <dd>- Table is now responsive with scroll bar whenever contents overflow</dd>
           <dd>- Fix styling for alert message</dd>
         </dl>
+
+        <p>@2020 Created by Netherwave</p>
       </div>
     </>
   );
