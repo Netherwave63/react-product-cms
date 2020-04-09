@@ -29,6 +29,10 @@ const Navbar = () => {
           <a class="navbar-item">
             <Link to={ROUTES.PRODUCTS} onClick={() => setIsActive(!isActive)}>Products</Link>
           </a>
+
+          <a class="navbar-item">
+            <Link to={ROUTES.VERSION} onClick={() => setIsActive(!isActive)}>Version</Link>
+          </a>
         </div>
       </div>
     </nav>
