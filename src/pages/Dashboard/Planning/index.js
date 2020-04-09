@@ -49,7 +49,7 @@ const Planning = ({
         Add New
       </button>
 
-      {isActive ? <AddNew customers={targetCustomers} setIsActive={setIsActive} /> : null}
+      {isActive ? <AddNew customers={targetCustomers} selectedProduct={selectedProduct} setIsActive={setIsActive} /> : null}
     </>
   );
 };

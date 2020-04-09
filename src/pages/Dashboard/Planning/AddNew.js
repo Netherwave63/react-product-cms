@@ -7,15 +7,40 @@ import { sortBy } from 'lodash';
 const AddNew = ({
   // props
   customers,
+  selectedProduct,
   setIsActive,
   // state
-  selectedProduct,
+  products,
+  productionBatches,
+  orders,
   // dispatch
   addOrder
 }) => {
   const [customerId, setCustomerId] = useState(customers[0]._id);
   const [customerOrders, setCustomerOrders] = useState('');
   const [ordersUnit, setOrdersUnit] = useState('Carton');
+
+  // Remark
+  let remark = '';
+  if (productionBatches) {
+    // get customer, customer's product and product references
+    const targetCustomer = customers.find(customer => customer._id === customerId);
+    const targetCustomerProduct = targetCustomer.products.find(product => product.product_id === selectedProduct);
+    const targetProduct = products.find(product => product._id === selectedProduct);
+    
+    // output
+    const previousOrders = orders.reduce((total, order) => { return total + parseInt(order.customerOrders) }, 0);
+    const output_weight = productionBatches * targetProduct.weight_per_batch - previousOrders;
+    
+    if (output_weight > 0) {
+      const output_estimate = Math.floor(output_weight / targetCustomerProduct.weight_per_package / targetCustomerProduct.package_per_carton);
+      remark = 'Balance: ' + output_weight + ' kg, ' + 'Estimate output: ' + + output_estimate + ' ctn';
+    } else {
+      remark = 'Out of balance';
+    }
+  } else {
+    remark = 'No batch run';
+  }
 
   const handleClick = () => {
     setIsActive(false);
@@ -103,6 +128,7 @@ const AddNew = ({
                 />
               </div>
             </div>
+            <p className='help'>{remark}</p>
           </form>
         </section>
         <footer className="modal-card-foot">
@@ -115,7 +141,9 @@ const AddNew = ({
 }
 
 const mapStateToProps = (state) => ({
-  selectedProduct: state.dashboardState.selectedProduct
+  productionBatches: state.dashboardState.productionBatches,
+  orders: state.dashboardState.orders,
+  products: state.productsState.products
 });
 
 const mapDispatchToProps = (dispatch) => ({
