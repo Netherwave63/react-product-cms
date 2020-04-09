@@ -15,17 +15,24 @@ body {
 }
 
 main {
-  padding: 12px;
+  padding : 12px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  main {
+    padding: 12px;
+  }
 }
 
 .alert-message {
   position: absolute;
-  top: 32px;
+  top: 64px;
   left: 50%;
   transform: translate(-50%, 0);
-  z-index: 2;
+  z-index: 10;
   animation-name: slide-down;
   animation-duration: .3s;
+  animation-timing-function: ease-in-out;
 }
 
 .entry-info {
@@ -46,8 +53,8 @@ i:focus, i:hover, i:active {
 }
 
 @keyframes slide-down {
-  from { top: -32px; }
-  to { top: 32px; }
+  from { top: -64px; }
+  to { top: 64px; }
 }
 
 /* level */

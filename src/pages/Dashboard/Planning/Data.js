@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { deleteOrder, shiftOrder, unshiftOrder } from '../../../store/actionCreators/dashboard';
+import DetailView from './DetailView';
 
 const Data = ({ 
   // props
@@ -16,6 +17,8 @@ const Data = ({
   shiftOrder,
   unshiftOrder
 }) => {
+  const [isActive, setIsActive] = useState(false);
+
   const style = {
     padding: 0,
     border: 0,
@@ -102,15 +105,25 @@ const Data = ({
         >
           <i className='fas fa-trash-alt' style={{ color: 'red' }}></i>
         </button> &nbsp; &nbsp;
+        <button 
+          className='button is-white'
+          onClick={() => {setIsActive(true)}}
+          style={style} 
+          title='Detail view'
+        >
+          <i className='fas fa-eye' style={{ color: 'mediumseagreen' }}></i>
+        </button> &nbsp; &nbsp;
         { index !== 0 &&
-          <button 
-            className='button is-white'
-            onClick={() => shiftOrder(index)}
-            style={style}
-            title='Shift order up'
-          >
-            <i className='fas fa-arrow-up' style={{ color: 'dodgerblue' }}></i>
-          </button>
+          <>
+            <button 
+              className='button is-white'
+              onClick={() => shiftOrder(index)}
+              style={style}
+              title='Shift order up'
+            >
+              <i className='fas fa-arrow-up' style={{ color: 'dodgerblue' }}></i>
+            </button> &nbsp; &nbsp;
+          </>
         }
         { orders.length > 1 && index !== orders.length - 1 &&
           <button 
@@ -122,6 +135,7 @@ const Data = ({
             <i className='fas fa-arrow-down' style={{ color: 'mediumseagreen' }}></i>
           </button>
         }
+        {isActive ? <DetailView customer={targetCustomer} product={targetProduct} customerProduct={targetCustomerProduct} batch={weight_per_batch} orders={customer_total_carton} output={output_total_carton} remark={remark} run={productionBatches} setIsActive={setIsActive} /> : null} 
       </td>
     </tr>
   );
